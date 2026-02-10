@@ -137,6 +137,101 @@ export default function HeroSection() {
         </Link>
       </div>
 
+      {/* Platform Token CA */}
+      <div
+        style={{
+          background: "var(--bg-card)",
+          border: "1px solid var(--border-color)",
+          borderRadius: 12,
+          padding: "20px 24px",
+          maxWidth: 520,
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 800,
+            color: "var(--accent)",
+            marginBottom: 10,
+          }}
+        >
+          $CLAWNCH Platform Token
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+          }}
+        >
+          <code
+            style={{
+              fontSize: 11,
+              color: "var(--text-secondary)",
+              fontFamily: "'SF Mono', 'Fira Code', monospace",
+              wordBreak: "break-all",
+            }}
+          >
+            DLJXffZdLh7MwTNikYtfwWio2cqnGDKAN8xZzc43pump
+          </code>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(
+                "DLJXffZdLh7MwTNikYtfwWio2cqnGDKAN8xZzc43pump"
+              );
+            }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontSize: 14,
+              padding: 4,
+              flexShrink: 0,
+            }}
+            title="Copy CA"
+          >
+            📋
+          </button>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 16,
+            marginTop: 10,
+            fontSize: 11,
+          }}
+        >
+          <a
+            href="https://pump.fun/coin/DLJXffZdLh7MwTNikYtfwWio2cqnGDKAN8xZzc43pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--accent)" }}
+          >
+            Pump.fun
+          </a>
+          <a
+            href="https://dexscreener.com/solana/DLJXffZdLh7MwTNikYtfwWio2cqnGDKAN8xZzc43pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--accent)" }}
+          >
+            DexScreener
+          </a>
+          <a
+            href="https://solscan.io/token/DLJXffZdLh7MwTNikYtfwWio2cqnGDKAN8xZzc43pump"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--accent)" }}
+          >
+            Solscan
+          </a>
+        </div>
+      </div>
+
       {/* Free to launch note */}
       <div
         style={{

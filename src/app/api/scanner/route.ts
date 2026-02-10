@@ -13,11 +13,12 @@ import type { ActivityEntry, ScanResult } from "@/lib/scanner/types";
 export const maxDuration = 60; // Allow up to 60s on Pro, 10s on Hobby
 
 export async function GET(req: NextRequest) {
-  // Protect endpoint: verify cron secret
+  // Protect endpoint: verify cron secret (header or query param)
   const authHeader = req.headers.get("authorization");
+  const querySecret = req.nextUrl.searchParams.get("secret");
   const cronSecret = process.env.CRON_SECRET;
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  if (cronSecret && authHeader !== `Bearer ${cronSecret}` && querySecret !== cronSecret) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
