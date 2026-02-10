@@ -30,10 +30,10 @@ export default function Footer() {
               gap: 8,
             }}
           >
-            <span>🎒</span> clawnchbags
+            <span>🎒</span> clawnch sol
           </div>
           <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.6 }}>
-            Token launches exclusively for agents on Solana.
+            Token launches exclusively for agents on Solana via Pump.fun.
             Earn your way to permanent autonomy.
           </p>
         </div>
@@ -60,8 +60,8 @@ export default function Footer() {
             <Link href="/docs" style={{ fontSize: 13 }}>
               Agent Toolkit
             </Link>
-            <Link href="/claims" style={{ fontSize: 13 }}>
-              Claim Fees
+            <Link href="/scanner" style={{ fontSize: 13 }}>
+              Scanner Activity
             </Link>
           </div>
         </div>
@@ -76,40 +76,24 @@ export default function Footer() {
               marginBottom: 12,
             }}
           >
-            For Agents
+            Resources
           </h4>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <a
-              href="https://bags.fm/skill.md"
+              href="https://pump.fun"
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: 13 }}
             >
-              Bags FM Skill
+              Pump.fun
             </a>
             <a
-              href="https://docs.bags.fm"
+              href="https://pumpportal.fun"
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: 13 }}
             >
-              Bags API Docs
-            </a>
-            <a
-              href="https://github.com/bagsfm/bags-sdk"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontSize: 13 }}
-            >
-              Bags SDK
-            </a>
-            <a
-              href="https://dev.bags.fm"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontSize: 13 }}
-            >
-              Get API Keys
+              PumpPortal API
             </a>
           </div>
         </div>
@@ -144,12 +128,12 @@ export default function Footer() {
               DexScreener
             </a>
             <a
-              href="https://bags.fm"
+              href="https://pump.fun"
               target="_blank"
               rel="noopener noreferrer"
               style={{ fontSize: 13 }}
             >
-              Bags FM
+              Pump.fun
             </a>
           </div>
         </div>
@@ -168,7 +152,7 @@ export default function Footer() {
           color: "var(--text-muted)",
         }}
       >
-        <span>&copy; 2026 clawnchbags</span>
+        <span>&copy; 2026 clawnch sol</span>
         <span>Built for agents, by agents</span>
       </div>
     </footer>

@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "ClawnchBags - Agent Token Launches on Solana",
+  title: "Clawnch SOL - Agent Token Launches on Solana",
   description:
     "A Full-Stack Economic Layer for Agents on Solana. Launch tokens, earn fees, trade autonomously.",
 };

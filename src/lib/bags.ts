@@ -31,7 +31,13 @@ async function apiFetch<T>(
 
   const data = await res.json();
   if (!data.success) {
-    throw new Error(data.error || "Bags API error");
+    const errMsg =
+      data.error ||
+      data.message ||
+      (typeof data.errors === "string" ? data.errors : null) ||
+      (Array.isArray(data.errors) ? JSON.stringify(data.errors) : null) ||
+      JSON.stringify(data);
+    throw new Error(errMsg);
   }
   return data.response;
 }
@@ -160,10 +166,12 @@ export async function createLaunchTransaction(params: {
   tipWallet?: string;
   tipLamports?: number;
 }): Promise<string> {
+  // API expects "ipfs" instead of "metadataUrl"
+  const { metadataUrl, ...rest } = params;
   return apiFetch<string>("/token-launch/create-launch-transaction", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
+    body: JSON.stringify({ ...rest, ipfs: metadataUrl }),
   });
 }
 
@@ -245,15 +253,16 @@ export async function getClaimablePositions(
   );
 }
 
-export interface ClaimTxResult {
-  transactions: Array<{ blockhash: unknown; transaction: string }>;
+export interface ClaimTxEntry {
+  tx: string;
+  blockhash: { blockhash: string; lastValidBlockHeight: number };
 }
 
 export async function getClaimTransactions(
   feeClaimer: string,
   tokenMint: string
-): Promise<ClaimTxResult> {
-  return apiFetch<ClaimTxResult>("/token-launch/claim-txs/v3", {
+): Promise<ClaimTxEntry[]> {
+  return apiFetch<ClaimTxEntry[]>("/token-launch/claim-txs/v3", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ feeClaimer, tokenMint }),

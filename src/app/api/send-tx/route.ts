@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendTransaction } from "@/lib/bags";
+import { Connection } from "@solana/web3.js";
+
+function getRpcUrl(): string {
+  return process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,7 +17,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const signature = await sendTransaction(transaction);
+    // Decode base64 transaction and send to Solana RPC
+    const txBytes = Buffer.from(transaction, "base64");
+    const connection = new Connection(getRpcUrl(), "confirmed");
+    const signature = await connection.sendRawTransaction(txBytes, {
+      skipPreflight: false,
+      maxRetries: 2,
+    });
+
     return NextResponse.json({ success: true, data: signature });
   } catch (error: unknown) {
     const msg =

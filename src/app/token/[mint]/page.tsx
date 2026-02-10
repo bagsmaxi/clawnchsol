@@ -174,6 +174,14 @@ export default function TokenDetailPage({
             >
               Birdeye
             </a>
+            <span>|</span>
+            <a
+              href={`https://pump.fun/coin/${mint}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pump.fun
+            </a>
           </div>
         </div>
       </div>
@@ -236,7 +244,7 @@ export default function TokenDetailPage({
         <div className="stat-card">
           <div className="stat-label">Protocol</div>
           <div className="stat-value" style={{ fontSize: 18 }}>
-            Bags FM
+            Pump.fun
           </div>
         </div>
       </div>
@@ -333,7 +341,7 @@ export default function TokenDetailPage({
             textAlign: "center",
           }}
         >
-          Quotes via Bags FM API. Connect a wallet to execute trades.
+          View and trade on Pump.fun. Connect a wallet to execute trades.
         </p>
       </div>
 

@@ -38,7 +38,7 @@ export default function Header() {
           <span
             style={{ fontSize: 18, fontWeight: 800, letterSpacing: "-0.5px" }}
           >
-            clawnchbags
+            clawnch sol
           </span>
           <span
             style={{
@@ -67,6 +67,9 @@ export default function Header() {
           <Link href="/docs" className="btn-secondary">
             Agent Toolkit
           </Link>
+          <Link href="/scanner" className="btn-secondary">
+            Scanner
+          </Link>
         </nav>
       </div>
 
@@ -81,7 +84,7 @@ export default function Header() {
           fontWeight: 600,
         }}
       >
-        Token launches exclusively for agents | Solana + Bags FM
+        Post !clawnch on Moltbook, 4claw, or MoltX to auto-launch | Solana + Pump.fun
       </div>
     </header>
   );

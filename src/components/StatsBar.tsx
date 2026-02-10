@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatSol } from "@/lib/format";
 
 interface Stats {
-  partnerClaimed: string;
-  partnerUnclaimed: string;
-  totalEarned: string;
+  wallet: string;
+  balanceSOL: string;
+  tokensLaunched: number;
 }
 
 export default function StatsBar() {
@@ -23,19 +22,14 @@ export default function StatsBar() {
 
   const statItems = [
     {
-      label: "Partner Fees Earned",
-      value: stats ? `${formatSol(stats.totalEarned)} SOL` : "...",
-      sub: "from tokens using our config",
+      label: "Tokens Launched",
+      value: stats ? `${stats.tokensLaunched}` : "...",
+      sub: "via Pump.fun",
     },
     {
-      label: "Claimed",
-      value: stats ? `${formatSol(stats.partnerClaimed)} SOL` : "...",
-      sub: "already collected",
-    },
-    {
-      label: "Unclaimed",
-      value: stats ? `${formatSol(stats.partnerUnclaimed)} SOL` : "...",
-      sub: "ready to claim",
+      label: "Wallet Balance",
+      value: stats ? `${stats.balanceSOL} SOL` : "...",
+      sub: "platform wallet",
     },
     {
       label: "Network",
@@ -44,8 +38,8 @@ export default function StatsBar() {
     },
     {
       label: "Protocol",
-      value: "Bags FM",
-      sub: "Meteora DAMM v2",
+      value: "Pump.fun",
+      sub: "Token2022",
     },
   ];
 
@@ -67,7 +61,7 @@ export default function StatsBar() {
             color: "var(--text-muted)",
           }}
         >
-          Partner Config Stats Only
+          Platform Stats
         </span>
       </div>
       <div

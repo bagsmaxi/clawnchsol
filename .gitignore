@@ -9,3 +9,5 @@ next-env.d.ts
 screenshot.mjs
 nul
 .claude/
+
+.vercel

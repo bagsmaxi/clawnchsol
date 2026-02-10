@@ -1,34 +1,37 @@
 import { NextResponse } from "next/server";
-import { getPartnerStats, getPartnerConfigKey } from "@/lib/bags";
+import { getPlatformTokens } from "@/lib/scanner/redis";
+import { Connection, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { getPlatformWalletAddress } from "@/lib/scanner/wallet";
+
+function getRpcUrl(): string {
+  return process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
+}
 
 export async function GET() {
   try {
-    const partnerKey = getPartnerConfigKey();
+    const wallet = getPlatformWalletAddress();
+    const connection = new Connection(getRpcUrl(), "confirmed");
 
-    let partnerClaimed = "0";
-    let partnerUnclaimed = "0";
+    // Get platform wallet SOL balance
+    let balanceLamports = 0;
+    try {
+      balanceLamports = await connection.getBalance(new PublicKey(wallet));
+    } catch { /* ignore */ }
 
-    if (partnerKey) {
-      try {
-        const pStats = await getPartnerStats(partnerKey);
-        partnerClaimed = pStats.claimedFees;
-        partnerUnclaimed = pStats.unclaimedFees;
-      } catch {
-        // Partner stats may not be available yet
-      }
-    }
-
-    // Total earned = claimed + unclaimed (both in lamports)
-    const totalEarned = (
-      BigInt(partnerClaimed || "0") + BigInt(partnerUnclaimed || "0")
-    ).toString();
+    // Get count of tokens launched
+    let tokensLaunched = 0;
+    try {
+      const tokens = await getPlatformTokens();
+      tokensLaunched = tokens.length;
+    } catch { /* ignore */ }
 
     return NextResponse.json({
       success: true,
       data: {
-        partnerClaimed,
-        partnerUnclaimed,
-        totalEarned,
+        wallet,
+        balanceLamports: balanceLamports.toString(),
+        balanceSOL: (balanceLamports / LAMPORTS_PER_SOL).toFixed(6),
+        tokensLaunched,
       },
     });
   } catch (error: unknown) {
